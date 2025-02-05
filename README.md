@@ -4,10 +4,10 @@
 This tool is ideal for managers handling large datasets and looking for a quick way to retrieve relevant business contacts by ZIP code. 
 
 ## **Summary of Key Functions:**
-✅ Upload & Update CSV Data – Imports business leads from a Google Drive CSV file into Google Sheets.
-✅ Search by ZIP Code – Filters and displays businesses that match a given ZIP code prefix.
-✅ Automated Data Management – Stores results in a separate "Search_Results" sheet and clears previous searches.
-✅ Easy-to-Use Interface – Accessible via a custom menu ("Manager Tools") in Google Sheets.
+* ✅ Upload & Update CSV Data – Imports business leads from a Google Drive CSV file into Google Sheets.
+* ✅ Search by ZIP Code – Filters and displays businesses that match a given ZIP code prefix.
+* ✅ Automated Data Management – Stores results in a separate "Search_Results" sheet and clears previous searches.
+* ✅ Easy-to-Use Interface – Accessible via a custom menu ("Manager Tools") in Google Sheets.
 
 ## **Overview**
 This project provides a **Google Apps Script** solution that allows users to:
@@ -35,10 +35,14 @@ This script is ideal for managers or businesses handling **large lead datasets**
   ```plaintext
   Lead | Company | Street | Zip Code | Phone Number
   ```
+![image](https://github.com/user-attachments/assets/6ebb9ade-f489-418f-95f3-5602db78d912)
 
 ### **2️⃣ Open Apps Script**
 - Click on **Extensions** → **Apps Script**.
 - Delete any existing code and **paste the script below**.
+
+  ![image](https://github.com/user-attachments/assets/a8e49cef-45f5-4765-bf7f-c74ad2fa8b14)
+
 
 ### **3️⃣ Paste This Script**
 ```javascript
@@ -124,8 +128,17 @@ function filterByZip(zipCode) {
   }
 }
 ```
+![image](https://github.com/user-attachments/assets/2a95e2d8-7c4d-4bde-b641-233505954948)
 
 ---
+
+![image](https://github.com/user-attachments/assets/e3d86d42-be9a-4c58-8774-03a286b01cdf)
+
+Click on the email address
+![image](https://github.com/user-attachments/assets/bf65ac93-c816-47db-a64d-6f5e578e7864)
+
+Click on the Advanced and the subsequent email address on the page.
+![image](https://github.com/user-attachments/assets/df32ceb6-3d07-4766-b496-829cd1f01c54)
 
 ## **Usage Instructions**
 
