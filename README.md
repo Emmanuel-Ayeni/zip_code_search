@@ -1,10 +1,13 @@
-# zip_code_search
-The ZIP Code Search &amp; CSV Upload Application for Google Sheets automates the process of uploading, organising, and searching business lead data based on ZIP codes.
+# **ZIP Code Search & CSV Upload Application for Google Sheets**The ZIP Code Search &amp; CSV Upload Application for Google Sheets automates the process of uploading, organising, and searching business lead data based on ZIP codes.
 
 ## **Introduction**
 This tool is ideal for managers handling large datasets and looking for a quick way to retrieve relevant business contacts by ZIP code. 
 
-# **ZIP Code Search & CSV Upload Application for Google Sheets**
+## **Summary of Key Functions:**
+✅ Upload & Update CSV Data – Imports business leads from a Google Drive CSV file into Google Sheets.
+✅ Search by ZIP Code – Filters and displays businesses that match a given ZIP code prefix.
+✅ Automated Data Management – Stores results in a separate "Search_Results" sheet and clears previous searches.
+✅ Easy-to-Use Interface – Accessible via a custom menu ("Manager Tools") in Google Sheets.
 
 ## **Overview**
 This project provides a **Google Apps Script** solution that allows users to:
