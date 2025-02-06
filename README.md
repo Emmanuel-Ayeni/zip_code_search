@@ -46,87 +46,46 @@ This script is ideal for managers or businesses handling **large lead datasets**
 
 ### **3️⃣ Paste This Script**
 ```javascript
-function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu("Manager Tools")
-    .addItem("Upload CSV", "uploadCSV")
-    .addItem("Search by ZIP", "promptForZipSearch")
-    .addToUi();
+function onEdit(e) {
+  if (!e || !e.range) return; // Prevents errors if the function runs without an event object
+
+  var editedCell = e.range;
+
+  if (editedCell.getA1Notation() === "H1") {
+    filterByZip();
+  }
 }
 
-function uploadCSV() {
+function filterByZip() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName("Lead Database");
-  
-  if (!sheet) {
-    sheet = ss.insertSheet("Lead Database");
-  } else {
-    sheet.clear();
-  }
+  var mainSheet = ss.getActiveSheet();
+  var searchZip = mainSheet.getRange("H1").getValue().toString().toUpperCase().trim();
 
-  var csvUrl = Browser.inputBox("Enter CSV file URL (Google Drive Shareable Link):");
-  if (!csvUrl) return;
+  if (!searchZip) return; // Exit if input is empty
 
-  try {
-    var fileId = csvUrl.match(/[-\w]{25,}/)[0];
-    var file = DriveApp.getFileById(fileId);
-    var csvContent = file.getBlob().getDataAsString();
-    var csvData = Utilities.parseCsv(csvContent);
-
-    sheet.getRange(1, 1, csvData.length, csvData[0].length).setValues(csvData);
-    SpreadsheetApp.getUi().alert("CSV uploaded successfully!");
-  } catch (e) {
-    SpreadsheetApp.getUi().alert("Error uploading CSV: " + e.message);
-  }
-}
-
-function promptForZipSearch() {
-  var ui = SpreadsheetApp.getUi();
-  var response = ui.prompt("Enter ZIP code prefix to search:");
-
-  if (response.getSelectedButton() == ui.Button.OK) {
-    var zipCode = response.getResponseText().trim();
-    if (zipCode !== "") {
-      filterByZip(zipCode);
-    } else {
-      ui.alert("Invalid ZIP code. Please try again.");
-    }
-  }
-}
-
-function filterByZip(zipCode) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var mainSheet = ss.getSheetByName("Lead Database");
-  var resultSheet = ss.getSheetByName("Search_Results");
-
-  if (!mainSheet) {
-    SpreadsheetApp.getUi().alert("Lead Database sheet is missing.");
-    return;
-  }
-
-  if (!resultSheet) {
-    resultSheet = ss.insertSheet("Search_Results");
-  } else {
-    resultSheet.clear();
-  }
-
-  var data = mainSheet.getDataRange().getValues();
-  var results = [["Lead", "Company", "Street", "Zip Code", "Phone Number"]];
+  var data = mainSheet.getDataRange().getValues(); // Read all data
+  var results = [["Lead", "Company", "Street", "Zip Code", "Phone Number"]]; // Table headers
 
   for (var i = 1; i < data.length; i++) {
-    var zip = data[i][3].toUpperCase();
-    if (zip.startsWith(zipCode.toUpperCase())) {
+    var zip = data[i][3] ? data[i][3].toString().toUpperCase().trim() : "";
+    if (zip.startsWith(searchZip)) {
       results.push([data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]]);
     }
   }
 
+  var resultSheet = ss.getSheetByName("Search_Results") || ss.insertSheet("Search_Results");
+  resultSheet.clear(); // Clears previous results
+
   if (results.length > 1) {
     resultSheet.getRange(1, 1, results.length, results[0].length).setValues(results);
-    SpreadsheetApp.getUi().alert("Results updated in 'Search_Results' sheet.");
   } else {
     resultSheet.getRange(1, 1).setValue("No matches found.");
   }
+
+    // Notify the user that the search is complete
+  SpreadsheetApp.getActiveSpreadsheet().toast("Search complete!", "Notification", 3);
 }
+
 ```
 ![image](https://github.com/user-attachments/assets/2a95e2d8-7c4d-4bde-b641-233505954948)
 
