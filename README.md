@@ -100,7 +100,8 @@ Click on the email address
 Click on the Advanced and the subsequent email address on the page.
 ![image](https://github.com/user-attachments/assets/df32ceb6-3d07-4766-b496-829cd1f01c54)
 
-Click on link to the allow Application Security.
+Google has to verify the app.
+Click on the Advanced link to proceed to verify the application. Click on the Advanced link to allow verification for Application Security.
 
 ## **Usage Instructions**
 
